@@ -25,7 +25,9 @@ export default function ScheduleSelect({
             <SelectValue placeholder="Select schedule" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="weekly">Weekly</SelectItem>
+            <SelectItem value="accelerated-bi-weekly">
+              Accelerated Bi-Weekly
+            </SelectItem>
             <SelectItem value="bi-weekly">Bi-Weekly</SelectItem>
             <SelectItem value="monthly">Monthly</SelectItem>
           </SelectContent>
