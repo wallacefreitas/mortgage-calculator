@@ -40,7 +40,7 @@ export default function MortgageCalculator() {
 
       const propertyPrice = Number(values.propertyPrice);
       const downPayment = Number(values.downPayment);
-      const interestRate = Number(values.interestRate) / 100;
+      const interestRate = Number(values.interestRate);
       const amortizationPeriod = Number(values.amortizationPeriod);
       const paymentSchedule = values.paymentSchedule.toLowerCase();
 
