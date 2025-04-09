@@ -1,5 +1,5 @@
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { formatCurrency } from "../common/utils/helper";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { formatCurrency } from "../../common/utils/helper";
 
 interface PaymentResultProps {
   paymentSchedule: string;
