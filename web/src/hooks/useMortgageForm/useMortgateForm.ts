@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
+type MortgageFormData = z.infer<typeof mortgageFormSchema>;
+
 const mortgageFormSchema = z.object({
   propertyPrice: z
     .string()
@@ -36,7 +38,7 @@ const mortgageFormSchema = z.object({
 });
 
 export function useMortgageForm() {
-  return useForm<z.infer<typeof mortgageFormSchema>>({
+  return useForm<MortgageFormData>({
     resolver: zodResolver(mortgageFormSchema),
     defaultValues: {
       propertyPrice: "",
@@ -45,5 +47,6 @@ export function useMortgageForm() {
       amortizationPeriod: "25",
       paymentSchedule: "monthly",
     },
+    mode: "all",
   });
 }

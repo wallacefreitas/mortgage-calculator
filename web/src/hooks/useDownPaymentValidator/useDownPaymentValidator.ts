@@ -10,19 +10,23 @@ export function useDownPaymentValidator() {
     downPayment: number,
     propertyPrice: number
   ): ValidateResponse {
-    const downPaymentPercentage = (downPayment / propertyPrice) * 100;
-    const downPaymentPercentageFormatted = formatCurrency(propertyPrice * 0.05);
-
-    if (downPaymentPercentage < 5) {
+    if (propertyPrice <= 0) {
       return {
         isDownPaymentValid: false,
-        message: `Down payment must be at least 5% of the property price (${downPaymentPercentageFormatted})`,
+        message: "Property price must be greater than zero",
       };
     }
 
+    const minimumDownPayment = propertyPrice * 0.05;
+    const isValid = downPayment >= minimumDownPayment;
+
     return {
-      isDownPaymentValid: true,
-      message: "",
+      isDownPaymentValid: isValid,
+      message: isValid
+        ? ""
+        : `Down payment must be at least 5% of the property price (${formatCurrency(
+            minimumDownPayment
+          )})`,
     };
   }
 
