@@ -144,7 +144,6 @@ describe("CalculateMortgageController", () => {
   });
 
   it("should handle invalid payment schedule", async () => {
-    // Arrange
     const mockRequestBody = {
       propertyPrice: 500000,
       downPayment: 100000,
