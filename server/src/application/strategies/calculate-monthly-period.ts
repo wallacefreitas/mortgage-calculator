@@ -4,7 +4,7 @@ import {
 } from "@core/abstract/calculate-period.abstract";
 
 export class CalculateMonthlyPeriod implements CalculatePeriod {
-  calculate(
+  public calculate(
     interestRate: number,
     amortizationPeriod: number
   ): CalculatePeriodResponse {

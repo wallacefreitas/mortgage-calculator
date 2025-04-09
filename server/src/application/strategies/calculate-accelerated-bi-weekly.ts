@@ -4,7 +4,7 @@ import {
 } from "@core/abstract/calculate-period.abstract";
 
 export class CalculateAcceleratedBiWeeklyPeriod implements CalculatePeriod {
-  calculate(
+  public calculate(
     interestRate: number,
     amortizationPeriod: number
   ): CalculatePeriodResponse {

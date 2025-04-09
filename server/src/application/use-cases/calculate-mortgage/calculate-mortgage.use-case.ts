@@ -1,3 +1,4 @@
+import { IsValidMortgageArguments } from "@core/decorators/is-valid-mortgage-arguments.decorator";
 import { ChooseCalculatePeriodUseCase } from "../choose-calculate-period/choose-calculate-period.use-case";
 
 type CalculateMortgageRequest = {
@@ -13,7 +14,8 @@ export class CalculateMortgageUseCase {
     private readonly chooseCalculatePeriodUseCase: ChooseCalculatePeriodUseCase
   ) {}
 
-  calculate({
+  @IsValidMortgageArguments()
+  public calculate({
     propertyPrice,
     downPayment,
     paymentSchedule,

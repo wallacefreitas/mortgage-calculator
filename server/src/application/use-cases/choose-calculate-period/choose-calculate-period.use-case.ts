@@ -7,7 +7,7 @@ import { PAYMENT_SCHEDULE } from "@utils/enums";
 export class ChooseCalculatePeriodUseCase {
   constructor() {}
 
-  execute(paymentSchedule: string): CalculatePeriod {
+  public execute(paymentSchedule: string): CalculatePeriod {
     switch (paymentSchedule) {
       case PAYMENT_SCHEDULE.BI_WEEKLY:
         return new CalculateBiWeeklyPeriod();
