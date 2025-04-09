@@ -1,0 +1,36 @@
+import { Label } from "./ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
+
+interface ScheduleSelectProps {
+  value: string;
+  onChange: (value: string) => void;
+}
+
+export default function ScheduleSelect({
+  value,
+  onChange,
+}: ScheduleSelectProps) {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="paymentSchedule">Payment Schedule</Label>
+      <div className="mt-3">
+        <Select value={value} onValueChange={onChange}>
+          <SelectTrigger id="paymentSchedule" className="w-full">
+            <SelectValue placeholder="Select schedule" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="weekly">Weekly</SelectItem>
+            <SelectItem value="bi-weekly">Bi-Weekly</SelectItem>
+            <SelectItem value="monthly">Monthly</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+    </div>
+  );
+}
