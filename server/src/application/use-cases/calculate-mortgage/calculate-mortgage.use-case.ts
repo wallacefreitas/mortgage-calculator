@@ -1,4 +1,3 @@
-import { PAYMENT_SCHEDULE } from "@utils/enums";
 import { ChooseCalculatePeriodUseCase } from "../choose-calculate-period/choose-calculate-period.use-case";
 
 type CalculateMortgageRequest = {
@@ -22,24 +21,19 @@ export class CalculateMortgageUseCase {
     amortizationPeriod,
   }: CalculateMortgageRequest): number {
     const loanAmount = propertyPrice - downPayment;
-
     const calculatePeriodChoosed =
       this.chooseCalculatePeriodUseCase.execute(paymentSchedule);
 
     const { numberOfPayments, periodicInterestRate } =
       calculatePeriodChoosed.calculate(interestRate, amortizationPeriod);
 
-    const payment =
-      (loanAmount *
-        periodicInterestRate *
-        Math.pow(1 + periodicInterestRate, numberOfPayments)) /
-      (Math.pow(1 + periodicInterestRate, numberOfPayments) - 1);
+    const powerTerm = Math.pow(1 + periodicInterestRate, numberOfPayments); // Step 1: Calculate (1 + r)^n
+    const numerator = periodicInterestRate * powerTerm; // Step 2: Calculate r * (1 + r)^n
+    const denominator = powerTerm - 1; // Step 3: Calculate (1 + r)^n - 1
+    const rateFactors = Number((numerator / denominator).toFixed(12)); // Step 4: Calculate rate factors with fixed precision
+    const payment = loanAmount * rateFactors; // Step 5: Calculate payment
+    const basePayment = Math.round(payment * 100) / 100; // Step 6: Round to 2 decimal places using Math.round
 
-    const finalPayment =
-      paymentSchedule === PAYMENT_SCHEDULE.ACCELERATED_BI_WEEKLY
-        ? (payment * 12) / 26
-        : payment;
-
-    return finalPayment;
+    return Number(basePayment.toFixed(2));
   }
 }
