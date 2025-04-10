@@ -13,6 +13,7 @@ export default defineConfig({
         "src/routes.ts",
         "src/core/abstract/**",
         "src/application/use-cases/calculate-mortgage/index.ts",
+        "dist/**",
       ],
     },
   },
