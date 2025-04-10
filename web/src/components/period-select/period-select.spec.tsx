@@ -22,11 +22,9 @@ describe("PeriodSelect", () => {
   it("shows all period options when clicked", () => {
     render(<PeriodSelect {...defaultProps} />);
 
-    // Open the select dropdown
     const trigger = screen.getByRole("combobox");
     fireEvent.click(trigger);
 
-    // Verify all options are present
     const expectedOptions = [
       "5 years",
       "10 years",

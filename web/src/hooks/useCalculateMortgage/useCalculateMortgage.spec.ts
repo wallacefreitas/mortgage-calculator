@@ -81,16 +81,4 @@ describe("useCalculateMortgage", () => {
       result.current.executeCalculateMortgage(mockMortgageData)
     ).rejects.toThrow("Network error");
   });
-
-  // it("should handle empty response", async () => {
-  //   (global.fetch as any).mockResolvedValueOnce({
-  //     json: () => Promise.resolve({}),
-  //   });
-
-  //   const { result } = renderHook(() => useCalculateMortgage());
-
-  //   await expect(
-  //     result.current.executeCalculateMortgage(mockMortgageData)
-  //   ).rejects.toThrow("Invalid response format");
-  // });
 });

@@ -4,7 +4,7 @@ import { useDownPaymentValidator } from "./useDownPaymentValidator";
 
 describe("useDownPaymentValidator", () => {
   it("should return invalid when down payment is less than 5% of property price", () => {
-    const downPayment = 24999; // 4.99% of 500000
+    const downPayment = 24999;
     const propertyPrice = 500000;
 
     const { result } = renderHook(() => useDownPaymentValidator());
@@ -20,7 +20,7 @@ describe("useDownPaymentValidator", () => {
   });
 
   it("should return valid when down payment is exactly 5% of property price", () => {
-    const downPayment = 25000; // 5% of 500000
+    const downPayment = 25000;
     const propertyPrice = 500000;
 
     const { result } = renderHook(() => useDownPaymentValidator());
@@ -34,7 +34,7 @@ describe("useDownPaymentValidator", () => {
   });
 
   it("should return valid when down payment is more than 5% of property price", () => {
-    const downPayment = 50000; // 10% of 500000
+    const downPayment = 50000;
     const propertyPrice = 500000;
 
     const { result } = renderHook(() => useDownPaymentValidator());
