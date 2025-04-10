@@ -1,7 +1,7 @@
 import { Input } from "../../common/components/ui/input/input";
 import { Label } from "../../common/components/ui/label/label";
 
-interface PercentageInputProps {
+export interface PercentageInputProps {
   id: string;
   label: string;
   value: string;
