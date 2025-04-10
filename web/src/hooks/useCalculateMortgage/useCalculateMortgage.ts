@@ -1,4 +1,4 @@
-import { BASE_URL } from "../../common/utils/helper";
+import { BASE_URL } from "../../common/utils/constants";
 import { MortgageProps } from "../../common/utils/types";
 
 export function useCalculateMortgage() {

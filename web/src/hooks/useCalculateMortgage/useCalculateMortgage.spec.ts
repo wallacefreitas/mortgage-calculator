@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 import { useCalculateMortgage } from "./useCalculateMortgage";
-import { BASE_URL } from "../../common/utils/helper";
+import { BASE_URL } from "../../common/utils/constants";
 
 describe("useCalculateMortgage", () => {
   const mockMortgageData = {
