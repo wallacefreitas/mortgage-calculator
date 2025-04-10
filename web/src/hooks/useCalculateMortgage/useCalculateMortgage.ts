@@ -1,3 +1,4 @@
+import { BASE_URL } from "../../common/utils/helper";
 import { MortgageProps } from "../../common/utils/types";
 
 export function useCalculateMortgage() {
@@ -11,22 +12,19 @@ export function useCalculateMortgage() {
       amortizationPeriod,
       paymentSchedule,
     } = data;
-    const response = await fetch(
-      `http://localhost:3001/api/v1/mortgage/calculate`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          propertyPrice,
-          downPayment,
-          interestRate,
-          amortizationPeriod,
-          paymentSchedule,
-        }),
-      }
-    );
+    const response = await fetch(`${BASE_URL}/mortgage/calculate`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        propertyPrice,
+        downPayment,
+        interestRate,
+        amortizationPeriod,
+        paymentSchedule,
+      }),
+    });
     const { finalPayment } = await response.json();
 
     return finalPayment;

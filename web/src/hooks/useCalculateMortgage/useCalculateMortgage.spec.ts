@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 import { useCalculateMortgage } from "./useCalculateMortgage";
+import { BASE_URL } from "../../common/utils/helper";
 
 describe("useCalculateMortgage", () => {
   const mockMortgageData = {
@@ -35,7 +36,7 @@ describe("useCalculateMortgage", () => {
 
     expect(global.fetch).toHaveBeenCalledTimes(1);
     expect(global.fetch).toHaveBeenCalledWith(
-      "http://localhost:3001/api/v1/mortgage/calculate",
+      `${BASE_URL}/mortgage/calculate`,
       {
         method: "POST",
         headers: {
