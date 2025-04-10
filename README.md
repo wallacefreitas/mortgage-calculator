@@ -12,9 +12,13 @@ Used destructuring of components into smaller parts in order to ensure their fle
 
 ### Backend
 
-Clean Architecture
+Clean Architecture (with Dependency Injection)
 
 Clean architecture was used to develop a scalable API, its responsibilities defined and abstraction dependency
+
+Strategy
+
+The Strategy pattern is used in the backend to calculate mortgage payments based on the chosen schedule type (monthly, biweekly, or accelerated biweekly).
 
 ## 🔥 Prerequisites
 
