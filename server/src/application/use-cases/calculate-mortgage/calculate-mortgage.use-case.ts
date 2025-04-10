@@ -39,12 +39,12 @@ export class CalculateMortgageUseCase {
     const { numberOfPayments, periodicInterestRate } =
       calculatePeriodChoosed.calculate(interestRate, amortizationPeriod);
 
-    const powerTerm = Math.pow(1 + periodicInterestRate, numberOfPayments); // Step 1: Calculate (1 + r)^n
-    const numerator = periodicInterestRate * powerTerm; // Step 2: Calculate r * (1 + r)^n
-    const denominator = powerTerm - 1; // Step 3: Calculate (1 + r)^n - 1
-    const rateFactors = Number((numerator / denominator).toFixed(8)); // Step 4: Calculate rate factors with fixed precision
-    const payment = totalLoanAmount * rateFactors; // Step 5: Calculate payment
-    const basePayment = Math.round(payment * 100) / 100; // Step 6: Round to 2 decimal places using Math.round
+    const powerTerm = Math.pow(1 + periodicInterestRate, numberOfPayments);
+    const numerator = periodicInterestRate * powerTerm;
+    const denominator = powerTerm - 1;
+    const rateFactors = Number((numerator / denominator).toFixed(8));
+    const payment = totalLoanAmount * rateFactors;
+    const basePayment = Math.round(payment * 100) / 100;
 
     return Number(basePayment.toFixed(2));
   }
