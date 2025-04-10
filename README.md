@@ -1,6 +1,6 @@
 ## 🚀 Mortgage Calculator App
 
-This project was build using React (Vite), ShadcnUI, Node.js, Express, Cypress and Vitest
+This project was build using React (Vite), TailwindCSS, ShadcnUI, Node.js, Express, Cypress and Vitest
 
 Below I explained a little of patterns:
 
@@ -83,6 +83,12 @@ npm run dev
 npm run test:unit
 ```
 
+2. Run the unit tests coverage:
+
+```sh
+npm run test:unit:coverage
+```
+
 ## 📂 Project Structure
 
 ```sh
@@ -121,14 +127,45 @@ mortgage-calculator/
 | :---------------- | :-------------------- | :--: |
 | application       | http://localhost:5173 | 5173 |
 | server            | http://localhost:3001 | 3001 |
+| storybook         | http://localhost:6006 | 6006 |
 
 ## 📷 Screenshots
 
-add screenshots...
+### Application
+
+Frontend (Initial Screen):
+
+<img src="./docs/assets/images/frontend-app-initial-screen.png" alt="Frontend (Initial Screen)" style="border: 2px solid oklch(38.1% 0.176 304.987); border-radius: 5px; padding: 5px;">
+
+Frontend (With validations):
+
+<img src="./docs/assets/images/frontend-app-with-validations.png" alt="Frontend (Initial Screen)" style="border: 2px solid oklch(38.1% 0.176 304.987); border-radius: 5px; padding: 5px;">
+
+Frontend (Calculated):
+
+<img src="./docs/assets/images/frontend-app-calculated.png" alt="Frontend (Initial Screen)" style="border: 2px solid oklch(38.1% 0.176 304.987); border-radius: 5px; padding: 5px;">
+
+### Storybook
+
+Frontend Storybook:
+
+<img src="./docs/assets/images/frontend-storybook.png" alt="Frontend Storybook" style="border: 2px solid oklch(38.1% 0.176 304.987); border-radius: 5px; padding: 5px;">
+
+### Tests
+
+Frontend (Unit Tests - Coverage)
+<img src="./docs/assets/images/frontend-unit-tests-coverage.png" alt="Frontend (Unit Tests - Coverage)" style="border: 2px solid oklch(38.1% 0.176 304.987); border-radius: 5px; padding: 5px;">
+
+Frontend Cypress (E2E Tests):
+<img src="./docs/assets/images/frontend-e2e-tests-cypress.png" alt="Frontend Cypress (E2E Tests)" style="border: 2px solid oklch(38.1% 0.176 304.987); border-radius: 5px; padding: 5px;">
+
+Backend (Unit Tests - Coverage)
+<img src="./docs/assets/images/backend-unit-tests-coverage.png" alt="Backend (Unit Tests - Coverage)" style="border: 2px solid oklch(38.1% 0.176 304.987); border-radius: 5px; padding: 5px;">
 
 ## 🔮 Future Implementations
 
-✓ Improve coverage of tests <br>
+✓ Improve coverage of tests (unit and e2e) <br>
+✓ Implement integrated tests (backend) <br>
 
 ## 📝 License
 
