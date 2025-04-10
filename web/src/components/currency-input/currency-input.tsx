@@ -1,5 +1,5 @@
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
+import { Input } from "../../common/components/ui/input/input";
+import { Label } from "../../common/components/ui/label/label";
 
 interface CurrencyInputProps {
   id: string;
