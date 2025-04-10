@@ -59,6 +59,7 @@ export default function CurrencyInput({
           onChange={handleChange}
           className="pl-8 bg-blue-50"
           inputMode="numeric"
+          data-testid="property-price"
         />
       </div>
     </div>

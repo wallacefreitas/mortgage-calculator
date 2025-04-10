@@ -21,7 +21,9 @@ export default function PeriodSelect({
 }: PeriodSelectProps) {
   return (
     <div className="space-y-2">
-      <Label htmlFor="amortizationPeriod">Amortization Period</Label>
+      <Label htmlFor="amortizationPeriod" id="amortization-period">
+        Amortization Period
+      </Label>
       <div className="mt-3">
         <Select
           value={value}
