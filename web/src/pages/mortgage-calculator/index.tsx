@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AlertCircle } from "lucide-react";
-import { Button } from "../../components/ui/button";
+import { Button } from "../../common/components/ui/button/button";
 import {
   Form,
   FormControl,
@@ -8,23 +8,26 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../../components/ui/form";
+} from "../../common/components/ui/form/form";
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "../../components/ui/card";
-import { Alert, AlertDescription } from "../../components/ui/alert";
-import ScheduleSelect from "../../components/schedule-select";
-import PeriodSelect from "../../components/period-select";
-import CurrencyInput from "../../components/currency-input";
-import PaymentResultCard from "../../components/payment-result-card";
+} from "../../common/components/ui/card/card";
+import {
+  Alert,
+  AlertDescription,
+} from "../../common/components/ui/alert/alert";
+import ScheduleSelect from "../../components/schedule-select/schedule-select";
+import PeriodSelect from "../../components/period-select/period-select";
+import CurrencyInput from "../../components/currency-input/currency-input";
+import PaymentResultCard from "../../components/payment-result-card/payment-result-card";
+import PercentageInput from "../../components/percentage-input/percentage-input";
 import { useDownPaymentValidator } from "../../hooks/useDownPaymentValidator/useDownPaymentValidator";
 import { useCalculateMortgage } from "../../hooks/useCalculateMortgage/useCalculateMortgage";
 import { useMortgageForm } from "../../hooks/useMortgageForm/useMortgateForm";
 import { MortgageProps } from "../../common/utils/types";
-import PercentageInput from "../../components/percentage-input";
 
 export default function MortgageCalculator() {
   const [payment, setPayment] = useState<number | null>(null);
@@ -89,11 +92,17 @@ export default function MortgageCalculator() {
                   name="propertyPrice"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Property Price</FormLabel>
+                      <FormLabel
+                        htmlFor="propertyPrice"
+                        id="property-price-label"
+                      >
+                        Property Price
+                      </FormLabel>
                       <FormControl>
                         <CurrencyInput
                           id="propertyPrice"
                           data-testid="property-price"
+                          aria-labelledby="property-price-label"
                           label=""
                           {...field}
                         />
@@ -108,7 +117,9 @@ export default function MortgageCalculator() {
                   name="downPayment"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Down Payment</FormLabel>
+                      <FormLabel htmlFor="downPayment" id="down-payment-label">
+                        Down Payment
+                      </FormLabel>
                       <FormControl>
                         <CurrencyInput
                           id="downPayment"
@@ -127,7 +138,9 @@ export default function MortgageCalculator() {
                   name="interestRate"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Annual Interest Rate</FormLabel>
+                      <FormLabel htmlFor="interestRate" id="interest-rate">
+                        Annual Interest Rate
+                      </FormLabel>
                       <FormControl>
                         <PercentageInput
                           id="interestRate"
