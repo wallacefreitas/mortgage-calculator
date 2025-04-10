@@ -18,18 +18,45 @@ export default function ScheduleSelect({
 }: ScheduleSelectProps) {
   return (
     <div className="space-y-2">
-      <Label htmlFor="paymentSchedule">Payment Schedule</Label>
+      <Label htmlFor="paymentSchedule" aria-label="payment-schedule">
+        Payment Schedule
+      </Label>
       <div className="mt-3">
-        <Select value={value} onValueChange={onChange}>
-          <SelectTrigger id="paymentSchedule" className="w-full">
+        <Select
+          value={value}
+          onValueChange={onChange}
+          data-testid="payment-schedule"
+        >
+          <SelectTrigger
+            id="paymentSchedule"
+            className="w-full"
+            data-testid="payment-schedule"
+            aria-label="payment-schedule"
+          >
             <SelectValue placeholder="Select schedule" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="accelerated-bi-weekly">
+            <SelectItem
+              data-testid="payment-schedule-accelerated-bi-weekly"
+              aria-label="payment-schedule-accelerated-bi-weekly"
+              value="accelerated-bi-weekly"
+            >
               Accelerated Bi-Weekly
             </SelectItem>
-            <SelectItem value="bi-weekly">Bi-Weekly</SelectItem>
-            <SelectItem value="monthly">Monthly</SelectItem>
+            <SelectItem
+              data-testid="payment-schedule-bi-weekly"
+              aria-label="payment-schedule-bi-weekly"
+              value="bi-weekly"
+            >
+              Bi-Weekly
+            </SelectItem>
+            <SelectItem
+              data-testid="payment-schedule-monthly"
+              aria-label="payment-schedule-monthly"
+              value="monthly"
+            >
+              Monthly
+            </SelectItem>
           </SelectContent>
         </Select>
       </div>

@@ -21,7 +21,11 @@ export default function PeriodSelect({
 }: PeriodSelectProps) {
   return (
     <div className="space-y-2">
-      <Label htmlFor="amortizationPeriod" id="amortization-period">
+      <Label
+        htmlFor="amortizationPeriod"
+        id="amortization-period-label"
+        aria-label="amortization-period-label"
+      >
         Amortization Period
       </Label>
       <div className="mt-3">
@@ -31,16 +35,57 @@ export default function PeriodSelect({
           data-testid="amortization-period"
           {...props}
         >
-          <SelectTrigger id={id} className="w-full">
+          <SelectTrigger
+            id={id}
+            className="w-full"
+            data-testid="amortization-period"
+            aria-label="amortization-period"
+          >
             <SelectValue placeholder="Select period" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="5">5 years</SelectItem>
-            <SelectItem value="10">10 years</SelectItem>
-            <SelectItem value="15">15 years</SelectItem>
-            <SelectItem value="20">20 years</SelectItem>
-            <SelectItem value="25">25 years</SelectItem>
-            <SelectItem value="30">30 years</SelectItem>
+            <SelectItem
+              data-testid="amortization-period-5"
+              aria-label="amortization-period-5"
+              value="5"
+            >
+              5 years
+            </SelectItem>
+            <SelectItem
+              data-testid="amortization-period-10"
+              aria-label="amortization-period-10"
+              value="10"
+            >
+              10 years
+            </SelectItem>
+            <SelectItem
+              data-testid="amortization-period-15"
+              aria-label="amortization-period-15"
+              value="15"
+            >
+              15 years
+            </SelectItem>
+            <SelectItem
+              data-testid="amortization-period-20"
+              aria-label="amortization-period-20"
+              value="20"
+            >
+              20 years
+            </SelectItem>
+            <SelectItem
+              data-testid="amortization-period-25"
+              aria-label="amortization-period-25"
+              value="25"
+            >
+              25 years
+            </SelectItem>
+            <SelectItem
+              data-testid="amortization-period-30"
+              aria-label="amortization-period-30"
+              value="30"
+            >
+              30 years
+            </SelectItem>
           </SelectContent>
         </Select>
       </div>

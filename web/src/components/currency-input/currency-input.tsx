@@ -6,6 +6,7 @@ interface CurrencyInputProps {
   id: string;
   label: string;
   value: string;
+  "data-testid"?: string;
   onChange: (value: string) => void;
 }
 
@@ -13,6 +14,7 @@ export default function CurrencyInput({
   id,
   label,
   value,
+  "data-testid": dataTestId,
   onChange,
 }: CurrencyInputProps) {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -48,7 +50,7 @@ export default function CurrencyInput({
           onChange={handleChange}
           className="pl-8 bg-blue-50"
           inputMode="numeric"
-          data-testid="property-price"
+          data-testid={dataTestId}
         />
       </div>
     </div>
