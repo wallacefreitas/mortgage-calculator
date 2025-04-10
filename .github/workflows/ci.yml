@@ -1,0 +1,36 @@
+name: Continuous Integration
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ci:
+    name: CI Pipeline
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+
+      - name: Install dependencies (Server)
+        working-directory: server
+        run: npm install
+
+      - name: Run unit tests (Server)
+        working-directory: server
+        run: npm run test:unit
+
+      - name: Install dependencies (Web)
+        working-directory: web
+        run: npm install
+
+      - name: Run unit tests (Web)
+        working-directory: web
+        run: npm run test:unit
