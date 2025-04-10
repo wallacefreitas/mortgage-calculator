@@ -16,11 +16,9 @@ describe("ScheduleSelect", () => {
   it("shows all payment schedule options", async () => {
     render(<ScheduleSelect value="" onChange={() => {}} />);
 
-    // Open the select dropdown
     const trigger = screen.getByRole("combobox");
     fireEvent.click(trigger);
 
-    // Verify all options are present
     expect(screen.getByText("Accelerated Bi-Weekly")).toBeInTheDocument();
     expect(screen.getByText("Bi-Weekly")).toBeInTheDocument();
     expect(screen.getByText("Monthly")).toBeInTheDocument();
@@ -30,11 +28,9 @@ describe("ScheduleSelect", () => {
     const handleChange = vi.fn();
     render(<ScheduleSelect value="" onChange={handleChange} />);
 
-    // Open the select dropdown
     const trigger = screen.getByRole("combobox");
     fireEvent.click(trigger);
 
-    // Select an option
     const option = screen.getByText("Monthly");
     fireEvent.click(option);
 

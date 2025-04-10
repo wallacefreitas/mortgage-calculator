@@ -52,7 +52,6 @@ describe("PercentageInput", () => {
     const input = screen.getByRole("textbox");
     fireEvent.keyDown(input, { key: "5" });
 
-    // preventDefault should not be called for numeric input
     const event = new KeyboardEvent("keydown", {
       key: "5",
       bubbles: true,

@@ -58,32 +58,11 @@ describe("PeriodSelect", () => {
     expect(screen.getByText("20 years")).toBeInTheDocument();
   });
 
-  // it("has correct test id", () => {
-  //   render(
-  //     <PeriodSelect
-  //       {...defaultProps}
-  //       data-testid="amortization-period-select"
-  //     />
-  //   );
-
-  //   expect(
-  //     screen.getByTestId("amortization-period-select")
-  //   ).toBeInTheDocument();
-  // });
-
   it("applies correct width class to trigger", () => {
     render(<PeriodSelect {...defaultProps} />);
     const trigger = screen.getByRole("combobox");
     expect(trigger).toHaveClass("w-full");
   });
-
-  // it("passes additional props to Select component", () => {
-  //   const testId = "custom-test-id";
-  //   render(<PeriodSelect {...defaultProps} data-testid={testId} />);
-
-  //   const element = screen.getByRole("combobox");
-  //   expect(element).toHaveAttribute("data-testid", testId);
-  // });
 
   it("maintains correct order of period options", () => {
     render(<PeriodSelect {...defaultProps} />);
