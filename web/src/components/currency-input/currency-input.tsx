@@ -1,5 +1,6 @@
 import { Input } from "../../common/components/ui/input/input";
 import { Label } from "../../common/components/ui/label/label";
+import { formatCurrency } from "../../common/utils/helper";
 
 interface CurrencyInputProps {
   id: string;
@@ -14,18 +15,6 @@ export default function CurrencyInput({
   value,
   onChange,
 }: CurrencyInputProps) {
-  const formatCurrency = (value: string): string => {
-    const numericValue = value.replace(/[^0-9]/g, "");
-
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-      minimumFractionDigits: 0,
-    })
-      .format(Number(numericValue))
-      .replace("$", "");
-  };
-
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     const keysAllowed = [
       "Backspace",
