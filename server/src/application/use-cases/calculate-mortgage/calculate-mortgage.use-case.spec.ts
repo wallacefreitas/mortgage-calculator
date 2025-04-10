@@ -1,10 +1,12 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import { CalculateMortgageUseCase } from "./calculate-mortgage.use-case";
 import { ChooseCalculatePeriodUseCase } from "../choose-calculate-period/choose-calculate-period.use-case";
+import { CMHCPremium } from "@core/abstract/cmhc-premium.abstract";
 
 describe("CalculateMortgageUseCase", () => {
   let calculateMortgageUseCase: CalculateMortgageUseCase;
   let chooseCalculatePeriodUseCase: ChooseCalculatePeriodUseCase;
+  let cmhcPremiumService: CMHCPremium;
 
   beforeEach(() => {
     chooseCalculatePeriodUseCase = {
@@ -16,8 +18,19 @@ describe("CalculateMortgageUseCase", () => {
       }),
     } as any;
 
+    cmhcPremiumService = {
+      calculate: vi.fn().mockImplementation((propertyPrice, downPayment) => {
+        const downPaymentPercentage = (downPayment / propertyPrice) * 100;
+        if (downPaymentPercentage >= 20) return 0;
+        if (downPaymentPercentage >= 15) return 0.028;
+        if (downPaymentPercentage >= 10) return 0.031;
+        return 0.04;
+      }),
+    };
+
     calculateMortgageUseCase = new CalculateMortgageUseCase(
-      chooseCalculatePeriodUseCase
+      chooseCalculatePeriodUseCase,
+      cmhcPremiumService
     );
   });
 
