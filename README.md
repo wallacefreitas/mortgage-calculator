@@ -43,13 +43,23 @@ $ git clone https://github.com/wallacefreitas/mortgage-calculator.git
 cd mortgage-calculator/web
 ```
 
-2. Install the dependencies:
+2. Adjust .env file:
+
+```sh
+# Rename .env.sample to .env
+$ mv .env.sample .env
+
+# Adjust the content of variable with your address + port
+VITE_API_URL=http://localhost:3001/api/v1
+```
+
+3. Install the dependencies:
 
 ```sh
 npm install
 ```
 
-3. Running the Application
+4. Running the Application
 
 ```sh
 npm run dev
