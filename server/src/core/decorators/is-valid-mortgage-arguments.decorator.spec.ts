@@ -39,7 +39,7 @@ describe("IsValidMortgageArguments Decorator", () => {
     expect(() =>
       instance.testMethod({
         propertyPrice: 100000,
-        downPayment: 100000,
+        downPayment: 100001,
         interestRate: 5,
         amortizationPeriod: 25,
         paymentSchedule: "monthly",

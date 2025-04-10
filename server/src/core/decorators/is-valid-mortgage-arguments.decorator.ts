@@ -17,7 +17,7 @@ export function IsValidMortgageArguments() {
         throw new Error("Down payment cannot be negative.");
       }
 
-      if (request.downPayment >= request.propertyPrice) {
+      if (request.downPayment > request.propertyPrice) {
         throw new Error("Down payment must be less than the property price.");
       }
 
