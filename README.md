@@ -98,7 +98,6 @@ npm run dev
 ```sh
 npm run test:unit           // For unit tests
 npm run test:unit:coverage  // For unit tests (coverage)
-npm run cypress:web         // For e2e tests
 ```
 
 ## 📂 Project Structure
