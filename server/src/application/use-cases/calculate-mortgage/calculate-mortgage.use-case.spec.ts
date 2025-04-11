@@ -126,4 +126,22 @@ describe("CalculateMortgageUseCase", () => {
     expect(result).toBeDefined();
     expect(result).toBeGreaterThan(0);
   });
+
+  it("should throw a custom error when an exception occurs", () => {
+    vi.spyOn(cmhcPremiumService, "calculate").mockImplementation(() => {
+      throw new Error("Simulated service error");
+    });
+
+    const request = {
+      propertyPrice: 500000,
+      downPayment: 100000,
+      paymentSchedule: "monthly",
+      interestRate: 5,
+      amortizationPeriod: 25,
+    };
+
+    expect(() => {
+      calculateMortgageUseCase.calculate(request);
+    }).toThrow("An error occurred while calculating the mortgage.");
+  });
 });

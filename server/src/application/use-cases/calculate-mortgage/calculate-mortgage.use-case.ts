@@ -24,28 +24,32 @@ export class CalculateMortgageUseCase {
     interestRate,
     amortizationPeriod,
   }: CalculateMortgageRequest): number {
-    const cmhcPremiumRate = this.cmhcPremiumService.calculate(
-      propertyPrice,
-      downPayment
-    );
+    try {
+      const cmhcPremiumRate = this.cmhcPremiumService.calculate(
+        propertyPrice,
+        downPayment
+      );
 
-    const loanAmount = propertyPrice - downPayment;
-    const cmhcPremium = loanAmount * cmhcPremiumRate;
-    const totalLoanAmount = loanAmount + cmhcPremium;
+      const loanAmount = propertyPrice - downPayment;
+      const cmhcPremium = loanAmount * cmhcPremiumRate;
+      const totalLoanAmount = loanAmount + cmhcPremium;
 
-    const calculatePeriodChoosed =
-      this.chooseCalculatePeriodUseCase.execute(paymentSchedule);
+      const calculatePeriodChoosed =
+        this.chooseCalculatePeriodUseCase.execute(paymentSchedule);
 
-    const { numberOfPayments, periodicInterestRate } =
-      calculatePeriodChoosed.calculate(interestRate, amortizationPeriod);
+      const { numberOfPayments, periodicInterestRate } =
+        calculatePeriodChoosed.calculate(interestRate, amortizationPeriod);
 
-    const powerTerm = Math.pow(1 + periodicInterestRate, numberOfPayments);
-    const numerator = periodicInterestRate * powerTerm;
-    const denominator = powerTerm - 1;
-    const rateFactors = Number((numerator / denominator).toFixed(8));
-    const payment = totalLoanAmount * rateFactors;
-    const basePayment = Math.round(payment * 100) / 100;
+      const powerTerm = Math.pow(1 + periodicInterestRate, numberOfPayments);
+      const numerator = periodicInterestRate * powerTerm;
+      const denominator = powerTerm - 1;
+      const rateFactors = Number((numerator / denominator).toFixed(8));
+      const payment = totalLoanAmount * rateFactors;
+      const basePayment = Math.round(payment * 100) / 100;
 
-    return Number(basePayment.toFixed(2));
+      return Number(basePayment.toFixed(2));
+    } catch (error) {
+      throw new Error("An error occurred while calculating the mortgage.");
+    }
   }
 }
