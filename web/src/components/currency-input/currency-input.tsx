@@ -18,16 +18,20 @@ export default function CurrencyInput({
   onChange,
 }: CurrencyInputProps) {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    const keysAllowed = [
-      "Backspace",
-      "Delete",
-      "ArrowLeft",
-      "ArrowRight",
-      "Tab",
-    ];
+    try {
+      const keysAllowed = [
+        "Backspace",
+        "Delete",
+        "ArrowLeft",
+        "ArrowRight",
+        "Tab",
+      ];
 
-    if (!/[0-9]/.test(event.key) && !keysAllowed.includes(event.key)) {
-      event.preventDefault();
+      if (!/[0-9]/.test(event.key) && !keysAllowed.includes(event.key)) {
+        event.preventDefault();
+      }
+    } catch (error) {
+      console.error("Error handling key down event:", error);
     }
   };
 

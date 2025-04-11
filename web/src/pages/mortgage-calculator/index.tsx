@@ -204,7 +204,7 @@ export default function MortgageCalculator() {
         </Alert>
       )}
 
-      <div data-testid="payment-result">
+      <div>
         <PaymentResultCard
           payment={payment || 0}
           paymentSchedule={form.getValues().paymentSchedule}
