@@ -27,10 +27,6 @@ Before you begin, ensure you have the following installed on your machine:
 - Node.js (>= 22.x)
 - npm (>= 11.x)
 
-## 🧙‍♂️ Instructions
-
-- [Instructions Here](./instructions/README.md)
-
 ## 💾 Installation (Frontend)
 
 1. Clone the repository:
@@ -65,6 +61,14 @@ npm install
 npm run dev
 ```
 
+5. Running tests
+
+```sh
+npm run test:unit           // For unit tests
+npm run test:unit:coverage  // For unit tests (coverage)
+npm run cypress:web         // For e2e tests
+```
+
 ## 💾 Installation (Backend)
 
 1. Clone the repository:
@@ -89,18 +93,12 @@ npm install
 npm run dev
 ```
 
-## ⏱️ Running Tests
-
-1. Run the unit tests:
+4. Running tests
 
 ```sh
-npm run test:unit
-```
-
-2. Run the unit tests coverage:
-
-```sh
-npm run test:unit:coverage
+npm run test:unit           // For unit tests
+npm run test:unit:coverage  // For unit tests (coverage)
+npm run cypress:web         // For e2e tests
 ```
 
 ## 📂 Project Structure
