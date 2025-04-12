@@ -27,7 +27,7 @@ describe("Error Handling", () => {
     cy.wait(500);
 
     cy.contains(
-      "Down payment must be at least 5% of the property price"
+      "Down payment does not meet the minimum required for this price."
     ).should("be.visible");
   });
 });

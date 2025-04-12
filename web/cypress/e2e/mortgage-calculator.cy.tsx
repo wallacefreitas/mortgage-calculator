@@ -44,7 +44,9 @@ describe("Mortgage Calculator", () => {
 
     cy.get('button[type="submit"]').click();
 
-    cy.contains("Down payment must be at least").should("be.visible");
+    cy.contains(
+      "Down payment does not meet the minimum required for this price."
+    ).should("be.visible");
   });
 
   it("should handle different payment schedules", () => {

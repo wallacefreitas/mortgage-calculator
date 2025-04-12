@@ -50,7 +50,7 @@ describe("MortgageCalculator", () => {
 
     await waitFor(() => {
       expect(
-        screen.getByText("Down payment cannot exceed property price")
+        screen.getByText("Down payment must be less than the property price.")
       ).toBeInTheDocument();
     });
   });
@@ -136,7 +136,11 @@ describe("MortgageCalculator", () => {
     await user.click(submitButton);
 
     await waitFor(() => {
-      expect(screen.getByText(/\$1,500\.00/)).toBeInTheDocument();
+      expect(
+        screen.getByText(
+          "Down payment does not meet the minimum required for this price."
+        )
+      ).toBeInTheDocument();
     });
   });
 
@@ -231,7 +235,7 @@ describe("MortgageCalculator", () => {
 
     await waitFor(() => {
       expect(
-        screen.getByText("Down payment cannot exceed property price")
+        screen.getByText("Down payment must be less than the property price.")
       ).toBeInTheDocument();
     });
 

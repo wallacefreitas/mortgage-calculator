@@ -25,7 +25,6 @@ import PeriodSelect from "../../components/period-select/period-select";
 import CurrencyInput from "../../components/currency-input/currency-input";
 import PaymentResultCard from "../../components/payment-result-card/payment-result-card";
 import PercentageInput from "../../components/percentage-input/percentage-input";
-import { useDownPaymentValidator } from "../../hooks/useDownPaymentValidator/useDownPaymentValidator";
 import { useCalculateMortgage } from "../../hooks/useCalculateMortgage/useCalculateMortgage";
 import { useMortgageForm } from "../../hooks/useMortgageForm/useMortgateForm";
 import { MortgageProps } from "../../common/utils/types";
@@ -34,7 +33,6 @@ export default function MortgageCalculator() {
   const [payment, setPayment] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const { validate } = useDownPaymentValidator();
   const { executeCalculateMortgage } = useCalculateMortgage();
   const form = useMortgageForm();
 
@@ -48,17 +46,6 @@ export default function MortgageCalculator() {
       const amortizationPeriod = Number(values.amortizationPeriod);
       const paymentSchedule = values.paymentSchedule.toLowerCase();
 
-      const { isDownPaymentValid, message } = validate(
-        downPayment,
-        propertyPrice
-      );
-
-      if (!isDownPaymentValid) {
-        setError(message);
-        setPayment(null);
-        return;
-      }
-
       const finalPayment = await executeCalculateMortgage({
         propertyPrice,
         downPayment,
@@ -70,9 +57,7 @@ export default function MortgageCalculator() {
       setPayment(finalPayment);
       setError(null);
     } catch (error) {
-      setError(
-        `An error occurred while calculating the payment. Details: ${error}`
-      );
+      setError(error instanceof Error ? error.message : String(error));
     } finally {
       setIsLoading(false);
     }
