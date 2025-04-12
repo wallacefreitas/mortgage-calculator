@@ -1,5 +1,6 @@
 import { Input } from "../../common/components/ui/input/input";
 import { Label } from "../../common/components/ui/label/label";
+import { formatPercentage, validateKeyDown } from "../../common/utils/helper";
 
 export interface PercentageInputProps {
   id: string;
@@ -16,18 +17,8 @@ export default function PercentageInput({
   placeholder,
   onChange,
 }: PercentageInputProps) {
-  const formatPercentage = (value: string): string => {
-    const numericValue = value.replace(/[^0-9.]/g, "");
-    const parts = numericValue.split(".");
-
-    if (parts.length > 2) {
-      return `${parts[0]}.${parts[1]}`;
-    }
-
-    return numericValue ? `${numericValue}` : "";
-  };
-
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    const regex = /^[0-9.]+$/;
     const keysAllowed = [
       "Backspace",
       "Delete",
@@ -36,9 +27,7 @@ export default function PercentageInput({
       "Tab",
     ];
 
-    if (!/[0-9.]/.test(event.key) && !keysAllowed.includes(event.key)) {
-      event.preventDefault();
-    }
+    validateKeyDown(keysAllowed, regex, event);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

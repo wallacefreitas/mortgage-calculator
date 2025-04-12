@@ -208,12 +208,10 @@ export default function MortgageCalculator() {
         </Alert>
       )}
 
-      <div>
-        <PaymentResultCard
-          payment={payment || 0}
-          paymentSchedule={form.getValues().paymentSchedule}
-        />
-      </div>
+      <PaymentResultCard
+        payment={payment || 0}
+        paymentSchedule={form.getValues().paymentSchedule}
+      />
 
       <Alert variant="default" className="bg-blue-50">
         <Info className="h-4 w-4" />

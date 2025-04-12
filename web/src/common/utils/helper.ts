@@ -19,3 +19,28 @@ export function formatCurrency(value: string | number | null): string {
     maximumFractionDigits: 2,
   });
 }
+
+export function formatPercentage(value: string): string {
+  const numericValue = value.replace(/[^0-9.]/g, "");
+  const parts = numericValue.split(".");
+
+  if (parts.length > 2) {
+    return `${parts[0]}.${parts[1]}`;
+  }
+
+  return numericValue ? `${numericValue}` : "";
+}
+
+export function validateKeyDown(
+  keysAllowed: string[],
+  regex: RegExp,
+  event: React.KeyboardEvent<HTMLInputElement>
+) {
+  try {
+    if (!regex.test(event.key) && !keysAllowed.includes(event.key)) {
+      event.preventDefault();
+    }
+  } catch (error) {
+    console.error("Error handling key down event:", error);
+  }
+}

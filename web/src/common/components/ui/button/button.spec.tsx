@@ -30,52 +30,6 @@ describe("Button", () => {
     );
   });
 
-  it("renders with outline variant", () => {
-    render(<Button variant="outline">Outline</Button>);
-
-    const button = screen.getByRole("button", { name: "Outline" });
-    expect(button).toHaveClass(
-      "border",
-      "bg-background",
-      "shadow-xs",
-      "hover:bg-accent",
-      "hover:text-accent-foreground"
-    );
-  });
-
-  it("renders with secondary variant", () => {
-    render(<Button variant="secondary">Secondary</Button>);
-
-    const button = screen.getByRole("button", { name: "Secondary" });
-    expect(button).toHaveClass(
-      "bg-secondary",
-      "text-secondary-foreground",
-      "shadow-xs",
-      "hover:bg-secondary/80"
-    );
-  });
-
-  it("renders with ghost variant", () => {
-    render(<Button variant="ghost">Ghost</Button>);
-
-    const button = screen.getByRole("button", { name: "Ghost" });
-    expect(button).toHaveClass(
-      "hover:bg-accent",
-      "hover:text-accent-foreground"
-    );
-  });
-
-  it("renders with link variant", () => {
-    render(<Button variant="link">Link</Button>);
-
-    const button = screen.getByRole("button", { name: "Link" });
-    expect(button).toHaveClass(
-      "text-primary",
-      "underline-offset-4",
-      "hover:underline"
-    );
-  });
-
   it("renders with small size", () => {
     render(<Button size="sm">Small</Button>);
 

@@ -50,18 +50,6 @@ export const Variants: Story = {
       <Button {...args} variant="destructive">
         Destructive
       </Button>
-      <Button {...args} variant="outline">
-        Outline
-      </Button>
-      <Button {...args} variant="secondary">
-        Secondary
-      </Button>
-      <Button {...args} variant="ghost">
-        Ghost
-      </Button>
-      <Button {...args} variant="link">
-        Link
-      </Button>
     </div>
   ),
 };

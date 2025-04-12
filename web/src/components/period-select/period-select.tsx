@@ -13,6 +13,28 @@ interface PeriodSelectProps {
   onChange: (value: string) => void;
 }
 
+function PeriodSelectItems() {
+  const items = [
+    { id: "amortization-period-5", value: "5", label: "5 years" },
+    { id: "amortization-period-10", value: "10", label: "10 years" },
+    { id: "amortization-period-15", value: "15", label: "15 years" },
+    { id: "amortization-period-20", value: "20", label: "20 years" },
+    { id: "amortization-period-25", value: "25", label: "25 years" },
+    { id: "amortization-period-30", value: "30", label: "30 years" },
+  ];
+
+  return items.map((item) => (
+    <SelectItem
+      data-testid={item.id}
+      aria-label={item.id}
+      key={item.value}
+      value={item.value}
+    >
+      {item.label}
+    </SelectItem>
+  ));
+}
+
 export default function PeriodSelect({
   id,
   value,
@@ -44,48 +66,7 @@ export default function PeriodSelect({
             <SelectValue placeholder="Select period" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem
-              data-testid="amortization-period-5"
-              aria-label="amortization-period-5"
-              value="5"
-            >
-              5 years
-            </SelectItem>
-            <SelectItem
-              data-testid="amortization-period-10"
-              aria-label="amortization-period-10"
-              value="10"
-            >
-              10 years
-            </SelectItem>
-            <SelectItem
-              data-testid="amortization-period-15"
-              aria-label="amortization-period-15"
-              value="15"
-            >
-              15 years
-            </SelectItem>
-            <SelectItem
-              data-testid="amortization-period-20"
-              aria-label="amortization-period-20"
-              value="20"
-            >
-              20 years
-            </SelectItem>
-            <SelectItem
-              data-testid="amortization-period-25"
-              aria-label="amortization-period-25"
-              value="25"
-            >
-              25 years
-            </SelectItem>
-            <SelectItem
-              data-testid="amortization-period-30"
-              aria-label="amortization-period-30"
-              value="30"
-            >
-              30 years
-            </SelectItem>
+            <PeriodSelectItems />
           </SelectContent>
         </Select>
       </div>
