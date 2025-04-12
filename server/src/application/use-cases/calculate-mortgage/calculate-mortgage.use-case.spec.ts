@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach, vi } from "vitest";
 import { CalculateMortgageUseCase } from "./calculate-mortgage.use-case";
 import { ChooseCalculatePeriodUseCase } from "../choose-calculate-period/choose-calculate-period.use-case";
 import { CMHCPremium } from "@core/abstract/cmhc-premium.abstract";
+import { PAYMENT_SCHEDULE } from "@utils/enums";
 
 describe("CalculateMortgageUseCase", () => {
   let calculateMortgageUseCase: CalculateMortgageUseCase;

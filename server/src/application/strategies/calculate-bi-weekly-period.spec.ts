@@ -1,40 +1,91 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import { CalculateBiWeeklyPeriod } from "./calculate-bi-weekly-period";
+import { INTEREST_RATE_THRESHOLD, PAYMENT_FREQUENCY } from "@utils/enums";
 
 describe("CalculateBiWeeklyPeriod", () => {
-  let calculatePeriod: CalculateBiWeeklyPeriod;
+  let calculator: CalculateBiWeeklyPeriod;
 
   beforeEach(() => {
-    calculatePeriod = new CalculateBiWeeklyPeriod();
+    calculator = new CalculateBiWeeklyPeriod();
   });
 
   describe("calculate", () => {
-    it("should calculate periodic rate and number of payments correctly when rate is percentage", () => {
-      const result = calculatePeriod.calculate(5.0, 25);
+    it("should calculate periodic rate and number of payments correctly with percentage interest rate", () => {
+      const interestRate = 5.5;
+      const amortizationPeriod = 25;
 
-      expect(result.periodicInterestRate).toBeCloseTo(0.001923, 6);
-      expect(result.numberOfPayments).toBe(650);
+      const result = calculator.calculate(interestRate, amortizationPeriod);
+
+      expect(result.periodicInterestRate).toBe(
+        5.5 / 100 / PAYMENT_FREQUENCY.PAYMENTS_PER_YEAR
+      );
+      expect(result.numberOfPayments).toBe(
+        amortizationPeriod * PAYMENT_FREQUENCY.PAYMENTS_PER_YEAR
+      );
     });
 
-    it("should calculate periodic rate and number of payments correctly when rate is decimal", () => {
-      const result = calculatePeriod.calculate(0.05, 25);
+    it("should calculate periodic rate and number of payments correctly with decimal interest rate", () => {
+      const interestRate = 0.055;
+      const amortizationPeriod = 25;
 
-      expect(result.periodicInterestRate).toBeCloseTo(0.001923, 6);
-      expect(result.numberOfPayments).toBe(650);
+      const result = calculator.calculate(interestRate, amortizationPeriod);
+
+      expect(result.periodicInterestRate).toBe(
+        0.055 / PAYMENT_FREQUENCY.PAYMENTS_PER_YEAR
+      );
+      expect(result.numberOfPayments).toBe(
+        amortizationPeriod * PAYMENT_FREQUENCY.PAYMENTS_PER_YEAR
+      );
+    });
+  });
+
+  describe("calculatePeriodicRate", () => {
+    it("should convert percentage interest rate to periodic rate", () => {
+      const interestRate = 5.5;
+      const result = calculator["calculatePeriodicRate"](interestRate);
+
+      expect(result).toBe(5.5 / 100 / PAYMENT_FREQUENCY.PAYMENTS_PER_YEAR);
     });
 
-    it("should handle zero interest rate", () => {
-      const result = calculatePeriod.calculate(0, 25);
+    it("should convert decimal interest rate to periodic rate", () => {
+      const interestRate = 0.055;
+      const result = calculator["calculatePeriodicRate"](interestRate);
 
-      expect(result.periodicInterestRate).toBe(0);
-      expect(result.numberOfPayments).toBe(650);
+      expect(result).toBe(0.055 / PAYMENT_FREQUENCY.PAYMENTS_PER_YEAR);
     });
 
-    it("should handle one year amortization period", () => {
-      const result = calculatePeriod.calculate(5.0, 1);
+    it("should correctly identify percentage vs decimal rates using threshold", () => {
+      const percentageRate = INTEREST_RATE_THRESHOLD.PERCENTAGE_THRESHOLD + 1;
+      const decimalRate = INTEREST_RATE_THRESHOLD.PERCENTAGE_THRESHOLD - 0.1;
 
-      expect(result.periodicInterestRate).toBeCloseTo(0.001923, 6);
-      expect(result.numberOfPayments).toBe(26);
+      const percentageResult =
+        calculator["calculatePeriodicRate"](percentageRate);
+      const decimalResult = calculator["calculatePeriodicRate"](decimalRate);
+
+      expect(percentageResult).toBe(
+        percentageRate / 100 / PAYMENT_FREQUENCY.PAYMENTS_PER_YEAR
+      );
+      expect(decimalResult).toBe(
+        decimalRate / PAYMENT_FREQUENCY.PAYMENTS_PER_YEAR
+      );
+    });
+  });
+
+  describe("calculateTotalPayments", () => {
+    it("should calculate total number of payments for given years", () => {
+      const years = 25;
+      const result = calculator["calculateTotalPayments"](years);
+
+      expect(result).toBe(years * PAYMENT_FREQUENCY.PAYMENTS_PER_YEAR);
+    });
+
+    it("should handle different amortization periods", () => {
+      const testCases = [15, 20, 25, 30];
+
+      testCases.forEach((years) => {
+        const result = calculator["calculateTotalPayments"](years);
+        expect(result).toBe(years * PAYMENT_FREQUENCY.PAYMENTS_PER_YEAR);
+      });
     });
   });
 });

@@ -2,13 +2,14 @@ import { CMHCPremium } from "@core/abstract/cmhc-premium.abstract";
 
 interface PremiumRate {
   minDownPayment: number;
+  maxDownPayment: number;
   rate: number;
 }
 
 enum DOWN_PAYMENT_TIERS {
-  HIGH = 20,
-  MEDIUM = 15,
-  LOW = 10,
+  VERY_HIGH = 20,
+  HIGH = 15,
+  MEDIUM = 10,
   MINIMUM = 0,
 }
 
@@ -22,19 +23,23 @@ enum PREMIUM_RATES {
 export class CMHCPremiumService implements CMHCPremium {
   private readonly PREMIUM_RATE_TABLE: PremiumRate[] = [
     {
-      minDownPayment: DOWN_PAYMENT_TIERS.HIGH,
+      minDownPayment: DOWN_PAYMENT_TIERS.VERY_HIGH,
+      maxDownPayment: Infinity,
       rate: PREMIUM_RATES.NONE,
     },
     {
-      minDownPayment: DOWN_PAYMENT_TIERS.MEDIUM,
+      minDownPayment: DOWN_PAYMENT_TIERS.HIGH,
+      maxDownPayment: 19.99,
       rate: PREMIUM_RATES.MEDIUM,
     },
     {
-      minDownPayment: DOWN_PAYMENT_TIERS.LOW,
+      minDownPayment: DOWN_PAYMENT_TIERS.MEDIUM,
+      maxDownPayment: 14.99,
       rate: PREMIUM_RATES.HIGH,
     },
     {
       minDownPayment: DOWN_PAYMENT_TIERS.MINIMUM,
+      maxDownPayment: 9.99,
       rate: PREMIUM_RATES.VERY_HIGH,
     },
   ];
@@ -57,9 +62,11 @@ export class CMHCPremiumService implements CMHCPremium {
 
   private getPremiumRate(downPaymentPercentage: number): number {
     const premiumRate = this.PREMIUM_RATE_TABLE.find(
-      (rate) => downPaymentPercentage >= rate.minDownPayment
+      (rate) =>
+        downPaymentPercentage >= rate.minDownPayment &&
+        downPaymentPercentage <= rate.maxDownPayment
     );
 
-    return premiumRate?.rate ?? PREMIUM_RATES.VERY_HIGH;
+    return premiumRate?.rate ?? 0.04;
   }
 }

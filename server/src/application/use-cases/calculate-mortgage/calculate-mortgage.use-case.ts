@@ -1,6 +1,7 @@
 import { IsValidMortgageArguments } from "@core/decorators/is-valid-mortgage-arguments.decorator";
 import { CMHCPremium } from "@core/abstract/cmhc-premium.abstract";
 import { ChooseCalculatePeriodUseCase } from "../choose-calculate-period/choose-calculate-period.use-case";
+import { PAYMENT_SCHEDULE } from "@utils/enums";
 
 export type CalculateMortgageRequest = {
   propertyPrice: number;
@@ -25,14 +26,12 @@ export class CalculateMortgageUseCase {
     amortizationPeriod,
   }: CalculateMortgageRequest): number {
     try {
-      const cmhcPremiumRate = this.cmhcPremiumService.calculate(
+      const cmhcPremium = this.cmhcPremiumService.calculate(
         propertyPrice,
         downPayment
       );
 
-      const loanAmount = propertyPrice - downPayment;
-      const cmhcPremium = loanAmount * cmhcPremiumRate;
-      const totalLoanAmount = loanAmount + cmhcPremium;
+      const loanAmount = propertyPrice - downPayment + cmhcPremium;
 
       const calculatePeriodChoosed =
         this.chooseCalculatePeriodUseCase.execute(paymentSchedule);
@@ -40,14 +39,15 @@ export class CalculateMortgageUseCase {
       const { numberOfPayments, periodicInterestRate } =
         calculatePeriodChoosed.calculate(interestRate, amortizationPeriod);
 
-      const powerTerm = Math.pow(1 + periodicInterestRate, numberOfPayments);
-      const numerator = periodicInterestRate * powerTerm;
-      const denominator = powerTerm - 1;
-      const rateFactors = Number((numerator / denominator).toFixed(8));
-      const payment = totalLoanAmount * rateFactors;
-      const basePayment = Math.round(payment * 100) / 100;
+      const payment =
+        (loanAmount *
+          periodicInterestRate *
+          Math.pow(1 + periodicInterestRate, numberOfPayments)) /
+        (Math.pow(1 + periodicInterestRate, numberOfPayments) - 1);
 
-      return Number(basePayment.toFixed(2));
+      return paymentSchedule === PAYMENT_SCHEDULE.ACCELERATED_BI_WEEKLY
+        ? Number(payment.toFixed(2)) / 2
+        : Number(payment.toFixed(2));
     } catch (error) {
       throw new Error("An error occurred while calculating the mortgage.");
     }
