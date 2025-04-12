@@ -37,11 +37,11 @@ export default function ScheduleSelect({
           </SelectTrigger>
           <SelectContent>
             <SelectItem
-              data-testid="payment-schedule-accelerated-bi-weekly"
-              aria-label="payment-schedule-accelerated-bi-weekly"
-              value="accelerated-bi-weekly"
+              data-testid="payment-schedule-monthly"
+              aria-label="payment-schedule-monthly"
+              value="monthly"
             >
-              Accelerated Bi-Weekly
+              Monthly
             </SelectItem>
             <SelectItem
               data-testid="payment-schedule-bi-weekly"
@@ -51,11 +51,11 @@ export default function ScheduleSelect({
               Bi-Weekly
             </SelectItem>
             <SelectItem
-              data-testid="payment-schedule-monthly"
-              aria-label="payment-schedule-monthly"
-              value="monthly"
+              data-testid="payment-schedule-accelerated-bi-weekly"
+              aria-label="payment-schedule-accelerated-bi-weekly"
+              value="accelerated-bi-weekly"
             >
-              Monthly
+              Accelerated Bi-Weekly
             </SelectItem>
           </SelectContent>
         </Select>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AlertCircle } from "lucide-react";
+import { AlertCircle, Info } from "lucide-react";
 import { Button } from "../../common/components/ui/button/button";
 import {
   Form,
@@ -12,6 +12,7 @@ import {
 import {
   Card,
   CardContent,
+  CardDescription,
   CardHeader,
   CardTitle,
 } from "../../common/components/ui/card/card";
@@ -82,6 +83,9 @@ export default function MortgageCalculator() {
       <Card>
         <CardHeader>
           <CardTitle>Mortgage Details</CardTitle>
+          <CardDescription>
+            Enter your mortgage details to calculate your payments
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -210,6 +214,14 @@ export default function MortgageCalculator() {
           paymentSchedule={form.getValues().paymentSchedule}
         />
       </div>
+
+      <Alert variant="default" className="bg-blue-50">
+        <Info className="h-4 w-4" />
+        <AlertDescription>
+          This calculator provides estimates only. Speak with a mortgage
+          professional for accurate rates and terms.
+        </AlertDescription>
+      </Alert>
     </div>
   );
 }
