@@ -69,6 +69,12 @@ npm run test:unit:coverage  // For unit tests (coverage)
 npm run cypress:web         // For e2e tests
 ```
 
+6. Running Storybook
+
+```sh
+npm run storybook
+```
+
 ## 💾 Installation (Backend)
 
 1. Clone the repository:
