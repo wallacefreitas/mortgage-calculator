@@ -76,7 +76,7 @@ describe("MortgageCalculator", () => {
     const user = userEvent.setup();
 
     await user.type(screen.getByLabelText(/Property Price/i), "300000");
-    await user.type(screen.getByLabelText(/Down Payment/i), "15000"); // 5% down payment
+    await user.type(screen.getByLabelText(/Down Payment/i), "15000");
     await user.type(screen.getByLabelText(/Annual Interest Rate/i), "3.5");
 
     const submitButton = screen.getByRole("button", {
@@ -256,36 +256,4 @@ describe("MortgageCalculator", () => {
       expect(screen.getByText(/\$1,500\.00/)).toBeInTheDocument();
     });
   });
-
-  // it("displays an error when mortgage calculation fails", async () => {
-  //   vi.mock("../../hooks/useCalculateMortgage/useCalculateMortgage", () => ({
-  //     useCalculateMortgage: () => ({
-  //       executeCalculateMortgage: vi
-  //         .fn()
-  //         .mockRejectedValue(new Error("Calculation failed")),
-  //     }),
-  //   }));
-
-  //   const user = userEvent.setup();
-
-  //   await user.type(screen.getByLabelText(/Property Price/i), "500000");
-  //   await user.type(screen.getByLabelText(/Down Payment/i), "100000");
-  //   await user.type(screen.getByLabelText(/Annual Interest Rate/i), "5");
-
-  //   const submitButton = screen.getByRole("button", {
-  //     name: /calculate payment/i,
-  //   });
-  //   await user.click(submitButton);
-
-  //   await waitFor(() => {
-  //     expect(
-  //       screen.getByText(
-  //         "An error occurred while calculating the payment. Details: Error: Calculation failed"
-  //       )
-  //     ).toBeInTheDocument();
-  //   });
-
-  //   const paymentResult = screen.queryByTestId("payment-result");
-  //   expect(paymentResult).not.toBeInTheDocument();
-  // });
 });
