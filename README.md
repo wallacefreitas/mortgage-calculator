@@ -104,6 +104,7 @@ npm run dev
 ```sh
 npm run test:unit           // For unit tests
 npm run test:unit:coverage  // For unit tests (coverage)
+npm run test:integration    // For integration tests
 ```
 
 ## 📂 Project Structure
@@ -181,8 +182,7 @@ Backend (Unit Tests - Coverage)
 
 ## 🔮 Future Implementations
 
-✓ Improve coverage of tests (unit and e2e) <br>
-✓ Implement integrated tests (backend) <br>
+✓ Improve coverage of all tests <br>
 
 ## 📝 License
 
