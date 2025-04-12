@@ -15,15 +15,18 @@ export class CalculateBiWeeklyPeriod implements CalculatePeriod {
     };
   }
 
-  private calculatePeriodicRate(annualRate: number): number {
+  private calculatePeriodicRate(interestRate: number): number {
     const isPercentage =
-      annualRate >= INTEREST_RATE_THRESHOLD.PERCENTAGE_THRESHOLD;
-    const annualRateDecimal = isPercentage ? annualRate / 100 : annualRate;
+      interestRate >= INTEREST_RATE_THRESHOLD.PERCENTAGE_THRESHOLD;
 
-    return annualRateDecimal / PAYMENT_FREQUENCY.PAYMENTS_PER_YEAR;
+    const biWeeklyRateDecimal = isPercentage
+      ? interestRate / 100
+      : interestRate;
+
+    return biWeeklyRateDecimal / PAYMENT_FREQUENCY.PAYMENTS_PER_YEAR;
   }
 
-  private calculateTotalPayments(years: number): number {
-    return years * PAYMENT_FREQUENCY.PAYMENTS_PER_YEAR;
+  private calculateTotalPayments(amortizationPeriod: number): number {
+    return amortizationPeriod * PAYMENT_FREQUENCY.PAYMENTS_PER_YEAR;
   }
 }

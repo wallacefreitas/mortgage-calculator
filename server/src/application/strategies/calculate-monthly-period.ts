@@ -15,15 +15,16 @@ export class CalculateMonthlyPeriod implements CalculatePeriod {
     };
   }
 
-  private calculatePeriodicRate(annualRate: number): number {
+  private calculatePeriodicRate(interestRate: number): number {
     const isPercentage =
-      annualRate >= INTEREST_RATE_THRESHOLD.PERCENTAGE_THRESHOLD;
-    const annualRateDecimal = isPercentage ? annualRate / 100 : annualRate;
+      interestRate >= INTEREST_RATE_THRESHOLD.PERCENTAGE_THRESHOLD;
 
-    return annualRateDecimal / PAYMENT_FREQUENCY.MONTHS_IN_YEAR;
+    const monthlyRateDecimal = isPercentage ? interestRate / 100 : interestRate;
+
+    return monthlyRateDecimal / PAYMENT_FREQUENCY.MONTHS_IN_YEAR;
   }
 
-  private calculateTotalPayments(years: number): number {
-    return years * PAYMENT_FREQUENCY.MONTHS_IN_YEAR;
+  private calculateTotalPayments(amortizationPeriod: number): number {
+    return amortizationPeriod * PAYMENT_FREQUENCY.MONTHS_IN_YEAR;
   }
 }

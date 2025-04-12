@@ -19,11 +19,11 @@ export class CalculateAcceleratedBiWeeklyPeriod implements CalculatePeriod {
     const isPercentage =
       interestRate >= INTEREST_RATE_THRESHOLD.PERCENTAGE_THRESHOLD;
 
-    const monthlyRateDecimal =
+    const acceleratedBiWeeklyRateDecimal =
       (isPercentage ? interestRate / 100 : interestRate) /
       PAYMENT_FREQUENCY.MONTHS_IN_YEAR;
 
-    return monthlyRateDecimal;
+    return acceleratedBiWeeklyRateDecimal;
   }
 
   private calculateTotalPayments(amortizationPeriod: number): number {
