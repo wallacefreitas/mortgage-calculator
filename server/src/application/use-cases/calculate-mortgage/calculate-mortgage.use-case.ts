@@ -48,8 +48,10 @@ export class CalculateMortgageUseCase {
       return paymentSchedule === PAYMENT_SCHEDULE.ACCELERATED_BI_WEEKLY
         ? Number(payment.toFixed(2)) / 2
         : Number(payment.toFixed(2));
-    } catch (error) {
-      throw new Error("An error occurred while calculating the mortgage.");
+    } catch (error: any) {
+      throw new Error(
+        `An error occurred while calculating the mortgage: ${error.message}`
+      );
     }
   }
 }

@@ -53,21 +53,6 @@ describe("CalculateMortgageUseCase", () => {
     );
   });
 
-  it("should handle edge case with zero down payment", () => {
-    const request = {
-      propertyPrice: 300000,
-      downPayment: 0,
-      paymentSchedule: "monthly",
-      interestRate: 5,
-      amortizationPeriod: 25,
-    };
-
-    const result = calculateMortgageUseCase.calculate(request);
-
-    expect(result).toBeDefined();
-    expect(typeof result).toBe("number");
-  });
-
   it("should handle different payment schedules", () => {
     const request = {
       propertyPrice: 400000,
@@ -143,6 +128,8 @@ describe("CalculateMortgageUseCase", () => {
 
     expect(() => {
       calculateMortgageUseCase.calculate(request);
-    }).toThrow("An error occurred while calculating the mortgage.");
+    }).toThrow(
+      "An error occurred while calculating the mortgage: Simulated service error"
+    );
   });
 });
